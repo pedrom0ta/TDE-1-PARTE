@@ -4,11 +4,12 @@ class Cliente:
         self.nome = nome
         self.cpf = cpf
         self.telefone = telefone
+        self.veiculos = []
 
     def mostrar_dados(self):
         print(f"ID: {self.id}")
         print(f"Nome: {self.nome}")
         print(f"Cpf: {self.cpf}")
-        print(f"ID: {self.id}")
+        print(f"Telefone: {self.telefone}")
 
         

@@ -13,6 +13,6 @@ class Veiculo:
         print(f"Modelo: {self.modelo}")
         print(f"Placa: {self.placa}")
         print(f"Ano: {self.ano}")
-        print(f"Cliente: {self.cliente}")
+        print(f"Cliente: {self.cliente.id} - {self.cliente.nome}")
 
         
