@@ -12,7 +12,7 @@ class Sistema:
     #Cadastrar Clientes
     def cadastrar_cliente(self):
         
-        id = int(input("\nID do Cliente: "))
+        id = len(self.clientes) + 1
         nome = input("Nome: ")
         cpf = input("Cpf: ")
         telefone = input("Telefone: ")
@@ -21,12 +21,12 @@ class Sistema:
         
         self.clientes.append(cliente)
 
-        print("\nCliente cadastrado!\n")
+        print(f"\nCliente cadastrado! ID {id}\n")
     
     #Cadastrar Veiculos
     def cadastrar_veiculo(self):
 
-        id = int(input("\nID do Veículo: "))
+        id = len(self.veiculos) + 1
         modelo = input("Modelo: ")
         placa = input("Placa: ")
         ano = int(input("Ano do Veículo: "))
@@ -35,7 +35,19 @@ class Sistema:
             print("\nNenhum cliente cadastrado!\n")
             return
         
-        veiculo = Veiculo(id, modelo, placa, ano)
+        print("\n-=- Clientes Cadastrados -=-\n")
+        for cliente in self.clientes:
+            print(f"ID: {cliente.id} - Nome: {cliente.nome}")
+        
+        cliente_cadastr = input("\nCliente está cadastrado? (S/N): ")
+        if cliente_cadastr.lower() == "n":
+            print(("\nCadastre o cliente para continuar!\n"))
+            return
+        
+        elif cliente_cadastr.lower() == "s":
+            id_cliente = int(input("Digite o ID do cliente: "))
+                
+        veiculo = Veiculo(id, modelo, placa, ano, id_cliente, cliente)
 
         self.veiculos.append(veiculo)
 
