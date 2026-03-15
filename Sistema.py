@@ -46,20 +46,21 @@ class Sistema:
             for cliente in self.clientes:
                 if id_cliente == cliente.id:
                     print("\nCliente Encontrado!\n")
-                    id = len(self.veiculos) + 1
+                    
                     modelo = input("Modelo: ")
                     placa = input("Placa: ")
                     ano = int(input("Ano do Veículo: "))
-                else:
-                    print("\nCliente não encontrado!\n")
-                    return
-                
-        veiculo = Veiculo(id, modelo, placa, ano, cliente, id_cliente)
-        
-        cliente.veiculos.append(veiculo)
-        self.veiculos.append(veiculo)
+                    id = len(self.veiculos) + 1
 
-        print("\nVeículo cadastrado!\n")
+                    veiculo = Veiculo(id, modelo, placa, ano, cliente)
+                    cliente.veiculos.append(veiculo)
+                    self.veiculos.append(veiculo)
+
+                    print("\nVeículo cadastrado!\n")
+                    return
+
+            print("\nCliente não encontrado!\n")
+
 
     #Cadastrar Serviços
     def cadastrar_servico(self):
@@ -114,4 +115,47 @@ class Sistema:
         for servicos in self.ordemdeservico:
             servicos.mostrar_dados()
             print("----------------")
+    
+    #Remover Cliente
+    def remover_cliente(self):
         
+        if not self.clientes:
+            print("\nNenhum cliente cadastrado!\n")
+            return
+
+        print("\n-=- Clientes Cadastrados -=-\n")
+        
+        for cliente in self.clientes:
+            print(f"ID {cliente.id} - Nome: {cliente.nome}")
+
+        pedir_id = int(input("\nDigite o ID do cliente irá remover: "))
+        
+        for cliente in self.clientes:
+            if pedir_id == cliente.id:
+                self.clientes.remove(cliente)
+                print("\nCliente removido!\n")
+                return
+    
+    def remover_veiculo(self):
+
+        if not self.veiculos:
+            print("\nNenhum veículo cadastrado!\n")
+            return
+        
+        print("\n-=- Veículos Cadastrados -=-\n")
+
+        for veiculo in self.veiculos:
+            print(f"ID - {veiculo.id}")
+            print(f"Dono do Veículo: {veiculo.cliente.nome}")
+            print(f"Placa: {veiculo.placa}")
+            print(f"Modelo: {veiculo.modelo}")
+            print("-=-=-=--=-=-=-=-=-")
+        
+        pedir_id_veiculo = int(input("\nDigite o ID do veículo irá remover: "))
+
+        for veiculo in self.veiculos:
+            if pedir_id_veiculo == veiculo.id:
+                self.veiculos.remove(veiculo)
+                print("\nVeículo removido!\n")
+                return
+            
